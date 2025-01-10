@@ -33,12 +33,12 @@ class Controller:
                                                        f" e {self._model.num_edges()} archi"))
 
         sorted_nodes = self._model.get_node_max_uscenti()
-        n_nodi = min(len(sorted_nodes),5)
+        n_nodi = min(len(sorted_nodes),5) #filtro nuovamente da sorted_nodes 5 elementi
         self._view.txt_result1.controls.append(ft.Text(f"\nI {n_nodi} nodi col maggior numero di archi uscenti sono:"))
         for i in range(n_nodi):
-            self._view.txt_result1.controls.append(ft.Text(f"{sorted_nodes[i][0]} | "
-                                                           f"num. archi uscenti: {sorted_nodes[i][1]}  | "
-                                                           f"peso tot.: {sorted_nodes[i][2]}"))
+            self._view.txt_result1.controls.append(ft.Text(f"{sorted_nodes[i][0]} | " #sorted_nodes[i][0]: Nome o identificatore del nodo.
+                                                           f"num. archi uscenti: {sorted_nodes[i][1]}  | " #Numero di archi uscenti dal nodo (grado uscente).
+                                                           f"peso tot.: {sorted_nodes[i][2]}")) #Peso totale degli archi uscenti dal nodo.
 
         self._view.btn_dettagli.disabled = False
         self._view.btn_path.disabled = False

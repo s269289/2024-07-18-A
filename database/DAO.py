@@ -117,7 +117,9 @@ class DAO():
             cursor.execute(query, (g.GeneID,))
 
             rows = cursor.fetchall()
-            localization_map[g.GeneID] = rows[0]["Localization"]
+            localization_map[g.GeneID] = rows[0]["Localization"] #rows[0]["Localization"]
+                                                                 #rows rappresenta il primo elemento della lista di dizionari rows
+                                                                 #["Localization"] restituisce il valore della colonna Localization
             result = rows[0]["Localization"]
 
             cursor.close()
@@ -132,15 +134,15 @@ class DAO():
         else:
             cursor = cnx.cursor(dictionary=True)
             query = """SELECT *  
-                        FROM interactions i """
+                        FROM interactions i"""
             cursor.execute(query)
 
             for row in cursor:
-                id1 = row["GeneID1"]
-                id2 = row["GeneID2"]
-                corr = row["Expression_Corr"]
-                correlations_map[(id1, id2)] = corr
-                correlations_map[(id2, id1)] = corr
+                id1 = row["GeneID1"] #id1 ha il valore della colonna ["GeneID1]
+                id2 = row["GeneID2"] #id2 ha il valore della colonna ["GeneID2]
+                corr = row["Expression_Corr"] #corr ha il valore della colonna ["Expression_Corr"]
+                correlations_map[(id1, id2)] = corr #assegno i valori alla correlations map passata da fuori
+                correlations_map[(id2, id1)] = corr #assegno i valori alla correlations map
             cursor.close()
             cnx.close()
 
@@ -160,7 +162,7 @@ class DAO():
             rows = cursor.fetchall()
 
             if len(rows) > 0:
-                result = rows[0]
+                result = rows[0] #accedi al primo dizionario della lista di dizionari rows
 
             cursor.close()
             cnx.close()
